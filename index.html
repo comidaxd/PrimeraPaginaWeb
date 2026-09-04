@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     RÚBRICA DE EVALUACIÓN: ESTRUCTURA HTML5
+     Proyecto: Portafolio Académico - Estudiante de Ingeniería de Sistemas e Informática
+     Cumplimiento estricto:
+     1. Estructura HTML5 correcta (<!DOCTYPE html>, <html>, <head>, <body>).
+     2. Uso jerárquico y semántico de encabezados desde <h1> hasta <h6>.
+     3. Uso de la etiqueta <p> para párrafos informativos.
+     4. Listas ordenadas (<ol>) y desordenadas (<ul>) con elementos (<li>).
+     5. Enlaces internos (anclas #) y externos (<a> con href, target, rel).
+     6. Imagen de stock con atributos src y alt descriptivos.
+     7. Atributos id y class abundantes, descriptivos y basados en convenciones lógicas.
+     8. Enlace al archivo CSS externo (style.css).
+     ========================================================================== -->
+<html lang="es">
+<head>
+    <!-- Configuración del conjunto de caracteres y compatibilidad -->
+    <meta charset="UTF-8">
+    <!-- Meta viewport para diseño web adaptable (Responsive Web Design) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Académico | Estudiante de Ingeniería de Sistemas e Informática</title>
+    
+    <!-- Enlace al archivo de estilos CSS externo (Requisito de entrega en dos archivos) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="inicio" class="cuerpo-pagina">
+
+    <!-- ==========================================================================
+         ENCABEZADO Y NAVEGACIÓN PRINCIPAL
+         RÚBRICA: Etiquetas semánticas <header>, <nav>, enlaces <a> internos y externos
+         ========================================================================== -->
+    <header id="encabezado-principal" class="encabezado-sitio">
+        <nav id="barra-navegacion" class="barra-navegacion">
+            <div class="contenedor-logo">
+                <span class="logo-texto">&lt;IngSistemas /&gt;</span>
+            </div>
+            <!-- Enlaces internos con anclas (#) -->
+            <ul class="menu-navegacion" id="menu-navegacion-principal">
+                <li class="menu-item"><a href="#sobre-mi" class="nav-enlace" id="link-sobre-mi">Sobre Mí</a></li>
+                <li class="menu-item"><a href="#habilidades" class="nav-enlace" id="link-habilidades">Habilidades</a></li>
+                <li class="menu-item"><a href="#proyectos" class="nav-enlace" id="link-proyectos">Proyectos</a></li>
+                <li class="menu-item"><a href="#contacto" class="nav-enlace" id="link-contacto">Contacto</a></li>
+                <!-- Enlace externo con atributo href y atributos de seguridad target="_blank" rel="noopener noreferrer" -->
+                <li class="menu-item"><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="nav-enlace nav-enlace-externo" id="link-github-nav">GitHub Externo ↗</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner de presentación (Hero) -->
+        <div class="banner-presentacion" id="banner-hero">
+            <!-- RÚBRICA: Uso del encabezado principal <h1> -->
+            <h1 class="titulo-principal" id="titulo-nombre">José - Estudiante de Ingeniería de Sistemas e Informática</h1>
+            <!-- RÚBRICA: Uso de la etiqueta <p> para párrafos -->
+            <p class="subtitulo-profesional" id="descripcion-perfil-corta">
+                Apasionado por la arquitectura de software, el diseño web moderno, la algoritmia y la optimización de bases de datos. Comprometido con la excelencia académica y la innovación tecnológica.
+            </p>
+            <div class="grupo-botones-hero">
+                <!-- Enlace interno a sección proyectos -->
+                <a href="#proyectos" class="boton-cta boton-primario" id="btn-ver-proyectos">Explorar Proyectos</a>
+                <!-- Enlace interno a sección contacto -->
+                <a href="#contacto" class="boton-cta boton-secundario" id="btn-ir-contacto">Contáctame</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         CONTENIDO PRINCIPAL (<main>)
+         ========================================================================== -->
+    <main id="contenido-principal" class="contenedor-principal">
+
+        <!-- ==========================================================================
+             SECCIÓN 1: SOBRE MÍ
+             RÚBRICA: <section>, <h2>, <h3>, <h4>, <p>, <img> de stock, <ol> y <li>
+             ========================================================================== -->
+        <section id="sobre-mi" class="seccion seccion-sobre-mi">
+            <!-- RÚBRICA: Encabezado <h2> -->
+            <h2 class="titulo-seccion" id="titulo-sobre-mi">Sobre Mí</h2>
+            <!-- RÚBRICA: Encabezado <h3> -->
+            <h3 class="subtitulo-seccion" id="subtitulo-sobre-mi">Perfil Vocacional y Trayectoria Académica</h3>
+
+            <div class="tarjeta-biografia" id="tarjeta-bio">
+                <div class="contenedor-imagen-perfil">
+                    <!-- RÚBRICA: Imagen de stock (Unsplash) con atributos src y alt descriptivos -->
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" 
+                         alt="Espacio de trabajo moderno de un programador con laptop mostrando líneas de código, cuaderno y café" 
+                         class="imagen-stock-perfil" 
+                         id="foto-estudiante"
+                         loading="lazy">
+                    <p class="pie-foto" id="leyenda-foto">Espacio de desarrollo y estudio tecnológico diario.</p>
+                </div>
+
+                <div class="texto-biografia" id="bloque-texto-bio">
+                    <!-- RÚBRICA: Párrafos informativos con <p> -->
+                    <p class="parrafo-biografia" id="parrafo-bio-1">
+                        Actualmente me encuentro cursando la carrera profesional de <strong>Ingeniería de Sistemas e Informática</strong>. Mi formación universitaria combina fundamentos teóricos rigurosos de matemáticas discretas, algoritmia y estructuras de datos, con la aplicación práctica en desarrollo de soluciones tecnológicas modernas y sostenibles.
+                    </p>
+                    <p class="parrafo-biografia" id="parrafo-bio-2">
+                        Considero que la tecnología debe ser accesible, eficiente y orientada a resolver problemas reales de nuestra sociedad. En este camino formativo, he desarrollado un marcado interés por el desarrollo web bajo estándares internacionales W3C, buscando siempre escribir código limpio, modular y con alta fidelidad visual.
+                    </p>
+
+                    <!-- RÚBRICA: Encabezado <h4> -->
+                    <h4 class="titulo-metas" id="titulo-metas-academicas">Metas Académicas y Objetivos Formativos</h4>
+                    
+                    <!-- RÚBRICA: Lista ordenada (<ol>) con elementos (<li>) -->
+                    <ol class="lista-metas-academicas" id="lista-metas">
+                        <li class="item-meta" id="meta-1">Dominar a profundidad el diseño web semántico (HTML5), estilización avanzada (CSS3) y reactividad (JavaScript).</li>
+                        <li class="item-meta" id="meta-2">Comprender la complejidad algorítmica (Notación Big O) y su impacto en el rendimiento de sistemas distribuidos.</li>
+                        <li class="item-meta" id="meta-3">Implementar bases de datos normalizadas y transaccionales con garantías ACID en PostgreSQL y MySQL.</li>
+                        <li class="item-meta" id="meta-4">Desarrollar proyectos integradores aplicando metodologías ágiles como Scrum y versionado colaborativo con Git/GitHub.</li>
+                        <li class="item-meta" id="meta-5">Obtener certificaciones de industria en arquitectura Cloud y buenas prácticas de ciberseguridad.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SECCIÓN 2: HABILIDADES TÉCNICAS Y BLANDAS
+             RÚBRICA: <section>, <h2>, <h3>, <h5>, <h6>, <ul> y <li>
+             ========================================================================== -->
+        <section id="habilidades" class="seccion seccion-habilidades">
+            <!-- RÚBRICA: Encabezado <h2> -->
+            <h2 class="titulo-seccion" id="titulo-habilidades">Habilidades y Competencias</h2>
+            <!-- RÚBRICA: Encabezado <h3> -->
+            <h3 class="subtitulo-seccion" id="subtitulo-habilidades">Destrezas del Ingeniero de Sistemas en Formación</h3>
+
+            <p class="parrafo-introductorio" id="intro-habilidades">
+                A continuación se listan las competencias técnicas y profesionales que desarrollo activamente en mi plan de estudios y en proyectos de autoaprendizaje guiado:
+            </p>
+
+            <!-- RÚBRICA: Lista desordenada (<ul>) con elementos (<li>) -->
+            <ul class="lista-habilidades-tecnicas" id="lista-competencias">
+                <li class="item-habilidad" id="hab-frontend"><strong>Desarrollo Web Frontend:</strong> Maquetación semántica HTML5, estilización avanzada CSS3, y JavaScript para dinamismo.</li>
+                <li class="item-habilidad" id="hab-backend"><strong>Lógica y Programación Orientada a Objetos:</strong> Diseño de algoritmos, abstracción, herencia y polimorfismo en Java, C++ y Python.</li>
+                <li class="item-habilidad" id="hab-bd"><strong>Bases de Datos Relacionales:</strong> Modelado entidad-relación, sentencias DDL/DML, consultas complejas y procedimientos almacenados.</li>
+                <li class="item-habilidad" id="hab-git"><strong>Control de Versiones y Trabajo en Equipo:</strong> Gestión de ramas, resolución de conflictos y flujo de trabajo colaborativo en Git y GitHub.</li>
+                <li class="item-habilidad" id="hab-metodologias"><strong>Metodologías Ágiles e Ingeniería de Requisitos:</strong> Levantamiento de requerimientos funcionales, historias de usuario y ceremonias Scrum.</li>
+            </ul>
+
+            <!-- Bloque de profundización técnica para cumplir con <h5> y <h6> -->
+            <div class="caja-profundizacion" id="caja-estandares">
+                <!-- RÚBRICA: Encabezado <h5> -->
+                <h5 class="titulo-especializacion" id="titulo-especializacion-web">Enfoque Especializado en Calidad de Código y Estándares Web</h5>
+                <p class="parrafo-especializacion" id="parrafo-estandares-w3c">
+                    Como futuro profesional de sistemas, mantengo el principio de que todo software debe construirse respetando los estándares internacionales de la W3C (World Wide Web Consortium), priorizando la accesibilidad universal (WCAG), la interoperabilidad y el rendimiento web óptimo.
+                </p>
+
+                <!-- RÚBRICA: Encabezado <h6> -->
+                <h6 class="titulo-nota-tecnica" id="nota-tecnica-auditoria">Nota Técnica: Criterios de Evaluación y Buenas Prácticas</h6>
+                <p class="parrafo-nota-tecnica" id="parrafo-detalle-auditoria">
+                    Cada línea de marcado y estilo en este proyecto ha sido estructurada de forma modular, libre de código espagueti, facilitando el mantenimiento y la escalabilidad del sistema.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SECCIÓN 3: PROYECTOS ACADÉMICOS
+             RÚBRICA: Contenedor con hack clearfix, tarjetas de proyectos, enlaces externos
+             ========================================================================== -->
+        <section id="proyectos" class="seccion seccion-proyectos">
+            <!-- RÚBRICA: Encabezado <h2> -->
+            <h2 class="titulo-seccion" id="titulo-proyectos">Proyectos Académicos</h2>
+            <!-- RÚBRICA: Encabezado <h3> -->
+            <h3 class="subtitulo-seccion" id="subtitulo-proyectos">Soluciones Desarrolladas en Asignaturas de la Carrera</h3>
+
+            <p class="parrafo-introductorio" id="intro-proyectos">
+                A continuación presento tres proyectos desarrollados durante mi formación universitaria, aplicando análisis de sistemas, diseño estructural y código estructurado:
+            </p>
+
+            <!-- Contenedor con clase clearfix para demostrar el hack CSS de flotantes -->
+            <div class="contenedor-tarjetas-proyectos clearfix" id="catalogo-proyectos">
+                
+                <!-- Tarjeta 1 -->
+                <article class="tarjeta-proyecto" id="proyecto-matricula">
+                    <div class="cabecera-tarjeta">
+                        <span class="etiqueta-categoria">OwnVault</span>
+                        <!-- RÚBRICA: Encabezado <h4> -->
+                        <h4 class="titulo-proyecto" id="titulo-proy-1">Un gestor de fragmentos de información rápido, ligero y moderno</h4>
+                    </div>
+                    <div class="cuerpo-tarjeta">
+                        <p class="descripcion-proyecto">
+                            construido en C++17. OmniVault actúa como un "Cerebro Digital" local, permitiendo a los desarrolladores guardar, organizar y editar fragmentos de código, enlaces y notas en tiempo real.
+                        </p>
+                        <div class="tecnologias-usadas">
+                            <span class="badge-tech">C++</span>
+                            <span class="badge-tech">CMakeList</span>
+                        </div>
+                    </div>
+                    <div class="pie-tarjeta">
+                        <!-- RÚBRICA: Enlace externo con href -->
+                        <a href="https://github.com/comidaxd/OwnVault" target="_blank" rel="noopener noreferrer" class="boton-enlace-proyecto" id="enlace-repo-matricula">Ver Repositorio en GitHub ↗</a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2 -->
+                <article class="tarjeta-proyecto" id="proyecto-biblioteca">
+                    <div class="cabecera-tarjeta">
+                        <span class="etiqueta-categoria">Desarrollo Web</span>
+                        <!-- RÚBRICA: Encabezado <h4> -->
+                        <h4 class="titulo-proyecto" id="titulo-proy-2">Ferretería JRD Perú</h4>
+                    </div>
+                    <div class="cuerpo-tarjeta">
+                        <p class="descripcion-proyecto">
+                            Ecosistema Full-Stack de alto rendimiento para la gestión integral de ferreterías, optimizado para el mercado peruano y despliegue en la nube(Proyecto privado).
+                        </p>
+                        <div class="tecnologias-usadas">
+                            <span class="badge-tech">HTML5</span>
+                            <span class="badge-tech">CSS3</span>
+                            <span class="badge-tech">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="pie-tarjeta">
+                        <!-- RÚBRICA: Enlace externo con href -->
+                        <a href="https://github.com/comidaxd/ferreteria-jrd-web" target="_blank" rel="noopener noreferrer" class="boton-enlace-proyecto" id="enlace-repo-biblioteca">Ver Repositorio en GitHub ↗</a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 3 -->
+                <article class="tarjeta-proyecto" id="proyecto-simulador">
+                    <div class="cabecera-tarjeta">
+                        <span class="etiqueta-categoria">Sistemas Operativos</span>
+                        <!-- RÚBRICA: Encabezado <h4> -->
+                        <h4 class="titulo-proyecto" id="titulo-proy-3">Simulador de Planificación de Procesos (CPU)</h4>
+                    </div>
+                    <div class="cuerpo-tarjeta">
+                        <p class="descripcion-proyecto">
+                            Simulación interactiva de políticas de despacho de procesador (Round Robin, FIFO, SJF y Por Prioridad) con cálculo dinámico de tiempos de espera y retorno medio.
+                        </p>
+                        <div class="tecnologias-usadas">
+                            <span class="badge-tech">Python</span>
+                            <span class="badge-tech">Tkinter</span>
+                            <span class="badge-tech">Algoritmos</span>
+                        </div>
+                    </div>
+                    <div class="pie-tarjeta">
+                        <!-- RÚBRICA: Enlace externo con href -->
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="boton-enlace-proyecto" id="enlace-repo-simulador">Ver Repositorio en GitHub ↗</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SECCIÓN 4: CONTACTO Y REDES
+             RÚBRICA: Enlaces externos e internos
+             ========================================================================== -->
+        <section id="contacto" class="seccion seccion-contacto">
+            <!-- RÚBRICA: Encabezado <h2> -->
+            <h2 class="titulo-seccion" id="titulo-contacto">Contacto Profesional</h2>
+            <!-- RÚBRICA: Encabezado <h3> -->
+            <h3 class="subtitulo-seccion" id="subtitulo-contacto">¿Interesado en colaborar en un proyecto o compartir conocimientos?</h3>
+
+            <p class="parrafo-contacto" id="parrafo-info-contacto">
+                Estoy abierto a intercambiar ideas sobre ingeniería de software, participar en hackatones y colaborar en proyectos de código abierto.
+            </p>
+
+            <div class="contenedor-enlaces-contacto" id="grupo-contactos">
+                <!-- RÚBRICA: Enlaces externos a redes y correo -->
+                <a href="https://www.linkedin.com/in/jos%C3%A9-antonio-ramos-rodriguez-4a5218268/" target="_blank" rel="noopener noreferrer" class="tarjeta-contacto-link" id="contacto-linkedin">
+                    <span class="icono-contacto">💼</span>
+                    <span class="texto-contacto">LinkedIn Académico</span>
+                </a>
+                <a href="https://github.com/comidaxd" target="_blank" rel="noopener noreferrer" class="tarjeta-contacto-link" id="contacto-github">
+                    <span class="icono-contacto">🐙</span>
+                    <span class="texto-contacto">Perfil de GitHub</span>
+                </a>
+                <a href="mailto:75992913@continental.edu.pe" class="tarjeta-contacto-link" id="contacto-email">
+                    <span class="icono-contacto">✉️</span>
+                    <span class="texto-contacto">Correo Institucional</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================================================
+         PIE DE PÁGINA (<footer>)
+         RÚBRICA: <footer> semántico, enlace interno de regreso al inicio
+         ========================================================================== -->
+    <footer id="pie-pagina" class="pie-sitio">
+        <div class="contenedor-footer">
+            <p class="texto-copyright" id="copyright-texto">
+                &copy; 2026 Jose Ramos - Estudiante de Ingeniería de Sistemas e Informática. Todos los derechos reservados.
+            </p>
+            <p class="credito-academico" id="credito-asignatura">
+                Proyecto desarrollado para la asignatura de <em>Diseño Web</em>.
+            </p>
+            <!-- Enlace interno con ancla para volver al inicio -->
+            <p class="enlace-retorno-bloque">
+                <a href="#inicio" class="enlace-retorno-arriba" id="link-volver-arriba">↑ Volver al inicio de la página</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

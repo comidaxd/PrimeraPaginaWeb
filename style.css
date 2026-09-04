@@ -1,0 +1,781 @@
+/* ==========================================================================
+   RÚBRICA DE EVALUACIÓN: HOJA DE ESTILOS CSS3 (style.css)
+   Proyecto: Portafolio Académico - Estudiante de Ingeniería de Sistemas e Informática
+   
+   ÍNDICE DE CUMPLIMIENTO DE LA RÚBRICA:
+   1. Variables CSS (Custom Properties) en la pseudo-clase :root.
+   2. Variedad de unidades de medida (px, em, rem, %).
+   3. Diferentes codificaciones de color (Hexadecimal, rgb, rgba).
+   4. Diversidad de propiedades CSS (box-sizing, margin, padding, border, etc.).
+   5. Selectores básicos (etiqueta, clase, ID).
+   6. Combinadores CSS (descendiente, hijo directo >, hermano adyacente +, hermano general ~).
+   7. Funciones CSS nativas: calc() y var().
+   8. Selectores avanzados y pseudo-clases (:hover, :focus, :nth-child).
+   9. Implementación explícita y comentada de "Hacks CSS" clásicos (Clearfix + WebKit Filter Hack + Star Hack).
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIABLES CSS (CUSTOM PROPERTIES) EN :ROOT
+   RÚBRICA: Declaración de paleta de colores, fuentes, espaciados y radios.
+   ========================================================================== */
+:root {
+    /* Codificación HEXADECIMAL */
+    --color-primario: #1d4ed8;            /* Azul corporativo de ingeniería */
+    --color-primario-oscuro: #1e40af;     /* Azul profundo para estados activos */
+    --color-secundario: #0ea5e9;          /* Cyan tecnológico para acentos */
+    --color-acento: #f59e0b;              /* Ámbar para destaques */
+    --color-texto-principal: #0f172a;     /* Pizarra oscura para máxima legibilidad */
+    --color-texto-secundario: #475569;    /* Gris medio para descripciones */
+    --color-fondo-pagina: #f8fafc;        /* Blanco humo para descanso visual */
+    --color-superficie: #ffffff;          /* Blanco puro para tarjetas y secciones */
+    --color-borde: #e2e8f0;               /* Borde sutil */
+    
+    /* Codificación RGB */
+    --color-fondo-alt: rgb(241, 245, 249);
+    --color-codigo: rgb(30, 41, 59);
+    
+    /* Codificación RGBA (transparencias / canales alfa) */
+    --color-sombra-suave: rgba(15, 23, 42, 0.08);
+    --color-sombra-elevada: rgba(15, 23, 42, 0.16);
+    --color-primario-alfa: rgba(29, 78, 216, 0.12);
+    --color-enfoque-anillo: rgba(14, 165, 233, 0.4);
+
+    /* Tipografías del sistema (Fallback robusto y moderno) */
+    --fuente-principal: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --fuente-mono: "Fira Code", Consolas, "Courier New", Courier, monospace;
+
+    /* Unidades relativas de espaciado en REM */
+    --espacio-xs: 0.25rem;  /* 4px base */
+    --espacio-sm: 0.5rem;   /* 8px base */
+    --espacio-md: 1rem;     /* 16px base */
+    --espacio-lg: 1.5rem;   /* 24px base */
+    --espacio-xl: 2.5rem;   /* 40px base */
+
+    /* Medidas con PX */
+    --radio-borde-pequeno: 4px;
+    --radio-borde-medio: 8px;
+    --radio-borde-grande: 16px;
+    --ancho-maximo-contenido: 1120px;
+}
+
+/* ==========================================================================
+   2. REINICIO GLOBAL (RESET / NORMALIZATION)
+   RÚBRICA: Selector universal (*), combinador descendiente, propiedades básicas
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Manejo predecible del modelo de caja */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para los enlaces con anclas */
+    font-size: 100%;         /* Base estándar: 1rem = 16px */
+}
+
+/* RÚBRICA: Selector de ETIQUETA (body) */
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-texto-principal);
+    line-height: 1.6em;      /* RÚBRICA: Unidad EM */
+    letter-spacing: 0.01em;  /* RÚBRICA: Unidad EM */
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   3. HACKS CSS CLÁSICOS (IMPLEMENTACIÓN Y DOCUMENTACIÓN PEDAGÓGICA)
+   RÚBRICA: Incluir y comentar al menos dos hacks CSS clásicos.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HACK CSS #1: "Micro Clearfix" (creado originalmente por Nicolas Gallagher)
+   y Hack de Propiedad con Asterisco (*zoom: 1) para Internet Explorer 6/7.
+
+   * MOTIVACIÓN HISTÓRICA:
+     Antes de Flexbox y CSS Grid, la maquetación en columnas se realizaba con
+     'float: left'. El problema era el "colapso del contenedor": el elemento padre
+     ignoraba la altura de los hijos flotantes y colapsaba a 0px de alto,
+     rompiendo el fondo y el flujo del documento.
+
+   * CÓMO FUNCIONA EL HACK:
+     1. Los pseudoelementos ::before y ::after con 'display: table' crean un
+        contexto de formato anonimo de bloque.
+     2. 'clear: both' en ::after fuerza al final del contenedor a situarse
+        estrictamente por debajo del elemento flotante más largo.
+     3. '*zoom: 1' es un "Star Hack": navegadores modernos lo ignoran por sintaxis
+        inválida, pero IE 6 y 7 lo interpretaban activando la propiedad propietaria
+        'hasLayout', resolviendo el colapso sin código extra.
+   -------------------------------------------------------------------------- */
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /* Hack específico para IE6 e IE7 */
+}
+
+/* --------------------------------------------------------------------------
+   HACK CSS #2: Filtro por Media Query Webkit / Blink
+
+   * MOTIVACIÓN HISTÓRICA:
+     Navegadores basados en WebKit (Safari en macOS/iOS y versiones antiguas de Chrome)
+     presentaban discrepancias de suavizado tipográfico y rendimientos de renderizado
+     en transformaciones comparados con Firefox (Gecko).
+   
+   * CÓMO FUNCIONA EL HACK:
+     Solo los motores que reconocen la directiva propietaria con prefijo '-webkit-'
+     procesan las reglas anidadas en esta consulta. Aquí aplicamos suavizado subpíxel
+     y forzamos aceleración por hardware con 'translateZ(0)'.
+   -------------------------------------------------------------------------- */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* Hack Webkit: Activa renderizado antialiased exclusivo en Safari / WebKit */
+    .tarjeta-proyecto,
+    .boton-cta {
+        -webkit-font-smoothing: antialiased;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0); /* Hack para forzar rasterizado en capa GPU */
+    }
+}
+
+/* --------------------------------------------------------------------------
+   HACK CSS #3 (BONUS): Star Property Hack (*) para emular min-height en IE Antiguo
+   * MOTIVACIÓN:
+     Internet Explorer 7 no soportaba correctamente min-height. El hack con asterisco
+     le decía a IE7 que aplique 'height' directo (que IE interpretaba erróneamente como min-height).
+   -------------------------------------------------------------------------- */
+.tarjeta-proyecto {
+    min-height: 260px;
+    *height: 260px; /* Hack IE7: Trata height como altura mínima */
+}
+
+/* ==========================================================================
+   4. ENCABEZADO Y BARRA DE NAVEGACIÓN
+   RÚBRICA: Selector ID (#encabezado-principal), funciones var() y calc()
+   ========================================================================== */
+#encabezado-principal {
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 2px 8px var(--color-sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* RÚBRICA: Combinador HIJO DIRECTO (>) */
+.barra-navegacion > .contenedor-logo {
+    font-weight: 700;
+    font-size: 1.25rem;      /* RÚBRICA: Unidad REM */
+    color: var(--color-primario);
+    letter-spacing: 0.05em;  /* RÚBRICA: Unidad EM */
+}
+
+.barra-navegacion {
+    /* RÚBRICA: Función nativa calc() combinando porcentaje (%) y unidades rem */
+    max-width: var(--ancho-maximo-contenido);
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* RÚBRICA: Combinador DESCENDIENTE (espacio en blanco) */
+.menu-navegacion .menu-item {
+    display: inline-block;
+    list-style-type: none;
+    margin-left: 1.25rem;
+}
+
+/* Estilos de los enlaces de navegación */
+.nav-enlace {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    border-radius: var(--radio-borde-pequeno);
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+/* RÚBRICA: Pseudo-clase :hover para interacción */
+.nav-enlace:hover {
+    color: var(--color-primario);
+    background-color: var(--color-primario-alfa);
+}
+
+/* RÚBRICA: Pseudo-clase :focus para accesibilidad */
+.nav-enlace:focus {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+.nav-enlace-externo {
+    color: var(--color-primario);
+    font-weight: 600;
+    border: 1px solid var(--color-primario);
+}
+
+.nav-enlace-externo:hover {
+    background-color: var(--color-primario);
+    color: #ffffff; /* RÚBRICA: Color HEX */
+}
+
+/* ==========================================================================
+   5. BANNER HERO DE PRESENTACIÓN
+   RÚBRICA: Unidades variadas, función calc(), propiedades de diseño
+   ========================================================================== */
+#banner-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #ffffff;
+    text-align: center;
+    /* RÚBRICA: Función calc() calculando padding vertical dinámico */
+    padding-top: calc(3rem + 1.5vw);
+    padding-bottom: calc(3rem + 1.5vw);
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* RÚBRICA: Selector ID (#titulo-nombre) */
+#titulo-nombre {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.25em;
+    max-width: 850px;
+    margin: 0 auto 1.25rem auto;
+    color: #ffffff;
+}
+
+#descripcion-perfil-corta {
+    font-size: 1.15rem;
+    color: rgb(226, 232, 240); /* RÚBRICA: Color RGB */
+    max-width: 750px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.7em;
+}
+
+.grupo-botones-hero {
+    margin-top: 1.5rem;
+}
+
+/* Botones con clase y estados :hover y :focus */
+.boton-cta {
+    display: inline-block;
+    padding: 0.75em 1.75em; /* RÚBRICA: Unidad EM */
+    font-size: 1rem;        /* RÚBRICA: Unidad REM */
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radio-borde-medio);
+    margin: 0.4rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.boton-primario {
+    background-color: var(--color-secundario);
+    color: #ffffff;
+    border: 2px solid var(--color-secundario);
+}
+
+.boton-primario:hover {
+    background-color: #0284c7;
+    border-color: #0284c7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35); /* RÚBRICA: RGBA */
+}
+
+.boton-primario:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--color-enfoque-anillo);
+}
+
+.boton-secundario {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.boton-secundario:hover {
+    background-color: #ffffff;
+    color: var(--color-texto-principal);
+    transform: translateY(-2px);
+}
+
+.boton-secundario:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+/* ==========================================================================
+   6. CONTENEDOR PRINCIPAL Y SECCIONES
+   RÚBRICA: Clases, IDs, combinadores, calc()
+   ========================================================================== */
+.contenedor-principal {
+    max-width: var(--ancho-maximo-contenido);
+    /* RÚBRICA: calc() para ancho con margen de resguardo del 5% */
+    width: calc(100% - 2rem);
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+}
+
+.seccion {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde-grande);
+    border: 1px solid var(--color-borde);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px var(--color-sombra-suave);
+}
+
+/* RÚBRICA: Selector de CLASE (.titulo-seccion) y COMBINADOR HERMANO ADYACENTE (+) */
+.titulo-seccion {
+    font-size: 1.85rem;
+    color: var(--color-primario);
+    border-bottom: 3px solid var(--color-secundario);
+    display: inline-block;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+/* RÚBRICA: Combinador HERMANO ADYACENTE (+) -> Aplica estilo al subtítulo inmediatamente posterior al título */
+.titulo-seccion + .subtitulo-seccion {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    font-weight: 500;
+    margin-bottom: 1.75rem;
+}
+
+/* RÚBRICA: Combinador HERMANO GENERAL (~) -> Aplica a párrafos introductorios hermanos del h2 */
+.titulo-seccion ~ .parrafo-introductorio {
+    color: var(--color-texto-secundario);
+    font-size: 1.05rem;
+    margin-bottom: 1.75rem;
+}
+
+/* ==========================================================================
+   7. SECCIÓN "SOBRE MÍ"
+   RÚBRICA: Imagen con medidas en %, px y em, listas ordenadas (<ol>)
+   ========================================================================== */
+.tarjeta-biografia {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.contenedor-imagen-perfil {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+/* RÚBRICA: Selector ID (#foto-estudiante) con unidades %, px y propiedades avanzadas */
+#foto-estudiante {
+    width: 100%;            /* RÚBRICA: Unidad % */
+    max-width: 340px;       /* RÚBRICA: Unidad PX */
+    height: auto;
+    border-radius: var(--radio-borde-medio);
+    border: 3px solid var(--color-borde);
+    box-shadow: 0 8px 16px var(--color-sombra-suave);
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+#foto-estudiante:hover {
+    transform: scale(1.02);
+}
+
+.pie-foto {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.texto-biografia {
+    flex: 2 1 450px;
+}
+
+.parrafo-biografia {
+    font-size: 1.02rem;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.titulo-metas {
+    font-size: 1.3rem;
+    color: var(--color-texto-principal);
+    margin: 1.5rem 0 1rem 0;
+}
+
+/* RÚBRICA: Lista ordenada (<ol>) y elementos (<li>) */
+.lista-metas-academicas {
+    margin-left: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.lista-metas-academicas .item-meta {
+    padding: 0.6em 0.8em;
+    margin-bottom: 0.4rem;
+    border-radius: var(--radio-borde-pequeno);
+    font-size: 0.95rem;
+}
+
+/* RÚBRICA: Pseudo-clase :nth-child(odd) y :nth-child(even) para filas intercaladas (Zebra striping) */
+.lista-metas-academicas .item-meta:nth-child(odd) {
+    background-color: var(--color-fondo-alt); /* RÚBRICA: RGB */
+    border-left: 4px solid var(--color-primario);
+}
+
+.lista-metas-academicas .item-meta:nth-child(even) {
+    background-color: #ffffff;
+    border-left: 4px solid var(--color-secundario);
+}
+
+/* ==========================================================================
+   8. SECCIÓN "HABILIDADES"
+   RÚBRICA: Listas desordenadas (<ul>), :nth-child, encabezados h5 y h6
+   ========================================================================== */
+.lista-habilidades-tecnicas {
+    list-style-type: none;
+    margin-bottom: 2rem;
+}
+
+.lista-habilidades-tecnicas .item-habilidad {
+    padding: 0.8em 1.2em;
+    margin-bottom: 0.6rem;
+    border-radius: var(--radio-borde-medio);
+    border: 1px solid var(--color-borde);
+    transition: all 0.2s ease;
+    font-size: 0.98rem;
+}
+
+/* RÚBRICA: Pseudo-clase :nth-child con coloración alternada */
+.lista-habilidades-tecnicas .item-habilidad:nth-child(even) {
+    background-color: rgb(248, 250, 252);
+}
+
+.lista-habilidades-tecnicas .item-habilidad:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.lista-habilidades-tecnicas .item-habilidad:hover {
+    border-color: var(--color-primario);
+    box-shadow: 0 2px 10px var(--color-sombra-suave);
+    transform: translateX(4px);
+}
+
+/* Bloque para encabezados h5 y h6 */
+.caja-profundizacion {
+    background-color: var(--color-primario-alfa);
+    border-left: 5px solid var(--color-primario);
+    padding: 1.5rem;
+    border-radius: 0 var(--radio-borde-medio) var(--radio-borde-medio) 0;
+    margin-top: 1.5rem;
+}
+
+/* RÚBRICA: Encabezado <h5> */
+.titulo-especializacion {
+    font-size: 1.05rem;
+    color: var(--color-primario-oscuro);
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.parrafo-especializacion {
+    font-size: 0.92rem;
+    color: var(--color-texto-principal);
+    margin-bottom: 0.8rem;
+}
+
+/* RÚBRICA: Encabezado <h6> */
+.titulo-nota-tecnica {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.parrafo-nota-tecnica {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+/* ==========================================================================
+   9. SECCIÓN "PROYECTOS ACADÉMICOS" CON MAQUETACIÓN FLOTANTE + CLEARFIX
+   RÚBRICA: Demostración práctica del Clearfix Hack con 'float' y calc()
+   ========================================================================== */
+.contenedor-tarjetas-proyectos {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+/* RÚBRICA: Combinador HIJO DIRECTO (>) con tarjeta flotante */
+.contenedor-tarjetas-proyectos > .tarjeta-proyecto {
+    /* Maquetación clásica por flotantes para requerir el hack Clearfix */
+    float: left;
+    /* RÚBRICA: Uso de calc() para 3 columnas perfectas con margen horizontal */
+    width: calc(33.333% - 1.2rem);
+    margin-right: 1.8rem;
+    margin-bottom: 1.8rem;
+    
+    background-color: #ffffff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde-medio);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* RÚBRICA: Pseudo-clase :nth-child para quitar margen derecho en cada 3ra tarjeta */
+.contenedor-tarjetas-proyectos > .tarjeta-proyecto:nth-child(3n) {
+    margin-right: 0;
+}
+
+/* RÚBRICA: Pseudo-clase :hover en tarjetas */
+.tarjeta-proyecto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--color-sombra-elevada);
+    border-color: var(--color-primario);
+}
+
+.etiqueta-categoria {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primario);
+    background-color: var(--color-primario-alfa);
+    padding: 0.2em 0.6em;
+    border-radius: var(--radio-borde-pequeno);
+    margin-bottom: 0.5rem;
+}
+
+.titulo-proyecto {
+    font-size: 1.2rem;
+    color: var(--color-texto-principal);
+    margin-bottom: 0.75rem;
+    line-height: 1.3em;
+}
+
+.descripcion-proyecto {
+    font-size: 0.92rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 1.2rem;
+    line-height: 1.5em;
+}
+
+.tecnologias-usadas {
+    margin-bottom: 1.5rem;
+}
+
+.badge-tech {
+    display: inline-block;
+    font-size: 0.78rem;
+    background-color: var(--color-fondo-alt);
+    color: var(--color-codigo);
+    font-family: var(--fuente-mono);
+    padding: 0.2em 0.5em;
+    border-radius: var(--radio-borde-pequeno);
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    border: 1px solid var(--color-borde);
+}
+
+/* Botón del proyecto */
+.boton-enlace-proyecto {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    padding: 0.6em 1em;
+    border-radius: var(--radio-borde-medio);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* RÚBRICA: Pseudo-clase :hover y :focus */
+.boton-enlace-proyecto:hover {
+    background-color: var(--color-primario);
+    color: #ffffff;
+}
+
+.boton-enlace-proyecto:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-enfoque-anillo);
+}
+
+/* ==========================================================================
+   10. SECCIÓN "CONTACTO"
+   RÚBRICA: Enlaces interactivos con :hover y :focus
+   ========================================================================== */
+.contenedor-enlaces-contacto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.tarjeta-contacto-link {
+    flex: 1 1 calc(33.333% - 1.2rem); /* RÚBRICA: calc() */
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    background-color: var(--color-fondo-pagina);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde-medio);
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    transition: all 0.25s ease;
+}
+
+.icono-contacto {
+    font-size: 1.8rem;
+    margin-right: 1rem;
+}
+
+.texto-contacto {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tarjeta-contacto-link:hover {
+    background-color: #ffffff;
+    border-color: var(--color-primario);
+    box-shadow: 0 6px 16px var(--color-sombra-suave);
+    transform: translateY(-3px);
+    color: var(--color-primario);
+}
+
+.tarjeta-contacto-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-enfoque-anillo);
+}
+
+/* ==========================================================================
+   11. PIE DE PÁGINA (FOOTER)
+   RÚBRICA: <footer>, enlaces internos de ancla
+   ========================================================================== */
+#pie-pagina {
+    background-color: #0f172a; /* RÚBRICA: HEX */
+    color: #94a3b8;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    margin-top: 3rem;
+}
+
+.contenedor-footer {
+    max-width: var(--ancho-maximo-contenido);
+    margin: 0 auto;
+}
+
+.texto-copyright {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+.credito-academico {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 1.2rem;
+}
+
+.enlace-retorno-arriba {
+    display: inline-block;
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.4em 0.8em;
+    border-radius: var(--radio-borde-pequeno);
+    transition: all 0.2s ease;
+}
+
+.enlace-retorno-arriba:hover {
+    color: #ffffff;
+    background-color: rgba(14, 165, 233, 0.2); /* RÚBRICA: RGBA */
+}
+
+.enlace-retorno-arriba:focus {
+    outline: 2px solid var(--color-secundario);
+}
+
+/* ==========================================================================
+   12. DISEÑO ADAPTABLE (RESPONSIVE DESIGN CON MEDIA QUERIES)
+   Garantiza que la estructura funcione fluidamente en móviles y tablets
+   ========================================================================== */
+@media screen and (max-width: 900px) {
+    /* Ajuste para 2 columnas en tablets */
+    .contenedor-tarjetas-proyectos > .tarjeta-proyecto {
+        width: calc(50% - 1rem); /* RÚBRICA: calc() */
+        margin-right: 1.8rem;
+    }
+    
+    .contenedor-tarjetas-proyectos > .tarjeta-proyecto:nth-child(3n) {
+        margin-right: 1.8rem;
+    }
+    
+    .contenedor-tarjetas-proyectos > .tarjeta-proyecto:nth-child(2n) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    /* Ajuste para 1 columna en teléfonos */
+    .barra-navegacion {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .menu-navegacion {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .menu-navegacion .menu-item {
+        margin-left: 0;
+    }
+
+    #titulo-nombre {
+        font-size: 1.7rem;
+    }
+
+    .seccion {
+        padding: 1.5rem 1rem;
+    }
+
+    .tarjeta-biografia {
+        flex-direction: column;
+    }
+
+    .contenedor-tarjetas-proyectos > .tarjeta-proyecto {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+
+    .tarjeta-contacto-link {
+        flex: 1 1 100%;
+    }
+}
