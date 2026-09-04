@@ -91,14 +91,9 @@ body {
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   HACK CSS #1: "Micro Clearfix" (creado originalmente por Nicolas Gallagher)
+   HACK CSS #1: Micro Clearfix 
    y Hack de Propiedad con Asterisco (*zoom: 1) para Internet Explorer 6/7.
 
-   * MOTIVACIÓN HISTÓRICA:
-     Antes de Flexbox y CSS Grid, la maquetación en columnas se realizaba con
-     'float: left'. El problema era el "colapso del contenedor": el elemento padre
-     ignoraba la altura de los hijos flotantes y colapsaba a 0px de alto,
-     rompiendo el fondo y el flujo del documento.
 
    * CÓMO FUNCIONA EL HACK:
      1. Los pseudoelementos ::before y ::after con 'display: table' crean un
